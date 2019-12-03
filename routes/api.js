@@ -51,7 +51,7 @@ router.delete('/card/:id', (req, res, next) => {
 })
 
 router.post('/card/:id/deposit', (req, res, next) => {
-	const credit = req.query.deposit
+	const credit = req.query.credit
 
 	Card.findById({ _id: req.params.id }, (err, money) => {
 		if (err) {
@@ -68,15 +68,16 @@ router.post('/card/:id/deposit', (req, res, next) => {
 						credit: credit
 					}
 				},
-				function(err, doc) {
+				(err, doc) => {
 					if (err) {
 						res.send(err)
+					} else {
+						res.send({
+							err: '0',
+							info: 'Money deposited',
+							balance: parseInt(credit) + parseInt(money.balance)
+						})
 					}
-					res.send({
-						err: '0',
-						info: 'Money deposited',
-						balance: parseInt(credit) + parseInt(money.balance)
-					})
 				}
 			)
 		}
@@ -105,12 +106,13 @@ router.post('/card/:id/withdrawal', (req, res, next) => {
 					(err, doc) => {
 						if (err) {
 							res.send(err)
+						} else {
+							res.send({
+								err: '0',
+								info: 'You just withdrew',
+								balance: parseInt(money.balance) - parseInt(debit)
+							})
 						}
-						res.send({
-							err: '0',
-							info: 'You just withdrew',
-							balance: parseInt(money.balance) + parseInt(debit)
-						})
 					}
 				)
 			}
@@ -120,11 +122,15 @@ router.post('/card/:id/withdrawal', (req, res, next) => {
 
 router.get('/card/:id/enquire', (req, res, next) => {
 	Card.findById({ _id: req.params.id }, (err, data) => {
-		res.send({
-			err: '0',
-			info: 'your balance is balance',
-			balance: data.balance
-		})
+		if (err) {
+			res.send(err)
+		} else {
+			res.send({
+				err: '0',
+				info: 'Your actual balance is ',
+				balance: data.balance
+			})
+		}
 	})
 })
 router.post('/logout', (req, res, next) => {
