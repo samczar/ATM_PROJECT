@@ -30,7 +30,12 @@ router.get('/cardnumber/:card', (req, res, next) => {
 router.post('/card', (req, res, next) => {
 	Card.create(req.body)
 		.then(card => {
-			res.send(card)
+			res.send({
+				info: 'Successfully Created',
+				name: card.name,
+				card_number: card.card_number,
+				pin: card.pin
+			})
 		})
 		.catch(next) //passing the next gets the validation
 })
