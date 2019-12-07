@@ -1,0 +1,13 @@
+FROM node:10
+
+WORKDIR /usr/src/app/server
+
+COPY package*.json /usr/src/app/server/
+
+RUN npm install
+
+COPY . /usr/src/app/server/
+
+EXPOSE 3001
+
+CMD ["npm", "start" ] 
