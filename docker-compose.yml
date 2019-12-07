@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+  client:
+    container_name: client
+    restart: always
+    depends_on:
+      - server
+      - mongo
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+    command: yarn start
+    volumes:
+      - ./client/src:/usr/src/app/client/src
+      - ./client:/usr/src/app/client
+    ports:
+      - '3000:3000'
+    links:
+      - server
+  server:
+    container_name: server
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    command: npm start
+    volumes:
+      - ./server:/usr/src/app/server
+      - /usr/src/app/server/node_modules
+    ports:
+      - '3001:3001'
+    depends_on:
+      - mongo
+    links:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/atm_project
+  mongo:
+    container_name: mongo
+    restart: always
+    image: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=atm_project
+    ports:
+      - '27017:27017'
