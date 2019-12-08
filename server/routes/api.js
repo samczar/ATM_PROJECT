@@ -132,7 +132,7 @@ router.get('/card/:id/enquire', (req, res, next) => {
 			res.send({
 				err: '0',
 				info: 'Your actual balance is ',
-				balance: parseInt(data.balance)
+				balance: parseInt(data.balance) || 0
 			})
 		}
 	})

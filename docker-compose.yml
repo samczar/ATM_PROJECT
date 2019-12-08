@@ -1,21 +1,21 @@
-version: '3.7'
+version: "3.7"
 
 services:
-  client:
-    container_name: client
+  frontend:
+    container_name: frontend
     restart: always
     depends_on:
       - server
       - mongo
     build:
       dockerfile: Dockerfile.dev
-      context: ./client
+      context: ./frontend
     command: yarn start
     volumes:
-      - ./client/src:/usr/src/app/client/src
-      - ./client:/usr/src/app/client
+      - ./frontend/src:/usr/src/app/frontend/src
+      - ./frontend:/usr/src/app/frontend
     ports:
-      - '3000:3000'
+      - "3000:3000"
     links:
       - server
   server:
@@ -29,7 +29,7 @@ services:
       - ./server:/usr/src/app/server
       - /usr/src/app/server/node_modules
     ports:
-      - '3001:3001'
+      - "3001:3001"
     depends_on:
       - mongo
     links:
@@ -43,4 +43,4 @@ services:
     environment:
       - MONGO_INITDB_DATABASE=atm_project
     ports:
-      - '27017:27017'
+      - "27017:27017"

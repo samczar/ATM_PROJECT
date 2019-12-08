@@ -8,7 +8,8 @@ const config = require('./config')
 // Set up expres app
 const app = express()
 
-mongoose.connect(config.mongo_url)
+mongoose.connect(config.MONGO_URI)
+
 mongoose.Promise = global.Promise
 
 app.use(express.static('public'))

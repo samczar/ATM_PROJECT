@@ -1,0 +1,53 @@
+:root {
+	--primary: skyblue;
+	--success: #bdee90;
+	--warning: #ecdb43;
+	--danger: red;
+	--white: white;
+}
+.btn {
+	font-family: 'Courier New', Courier, monospace;
+	font-weight: 400;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: tranform 0.3s ease;
+}
+
+.btn--primary--solid {
+	background-color: var(--primary);
+	color: var(--white);
+	border: none;
+	margin: 5px;
+}
+
+.btn--success--solid {
+	background-color: var(--success);
+	color: var(--white);
+	border: none;
+	margin: 5px;
+}
+
+.btn--warning--solid {
+	background-color: var(--warning);
+	color: var(--white);
+	border: none;
+	margin: 5px;
+}
+
+.btn--medium {
+	padding: 10px 20px;
+	font-size: 18px;
+	margin: 5px;
+}
+
+.btn--large {
+	padding: 15px 30px;
+	font-size: 20px;
+}
+
+.imageHolder {
+	width: 5rem;
+	height: 6rem;
+	border: 1px solid black;
+	margin-left: 3rem;
+}

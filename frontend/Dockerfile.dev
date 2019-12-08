@@ -1,0 +1,19 @@
+FROM node:10
+
+WORKDIR /usr/src/app/frontend
+
+COPY package*.json /usr/src/app/frontend
+
+COPY yarn.lock /usr/src/app/frontend
+
+RUN npm i yarn
+
+RUN npm install react-scripts -g --silent
+
+RUN yarn
+
+COPY . /usr/src/app/frontend
+
+EXPOSE 3000
+
+CMD ["yarn","start"] 
