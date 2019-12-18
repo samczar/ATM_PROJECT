@@ -29,13 +29,7 @@ router.get('/cardnumber/:card', (req, res, next) => {
 })
 
 router.post('/card', (req, res, next) => {
-	const name = req.body.name
-	const card_number = req.body.card_number
-	const pin = req.body.pin
-	const face = utils.fingerPrintEnroll
-	// const finger = req.body.finger
-
-	Card.create({ name: name, card_number: card_number, pin: pin, face: face })
+	Card.create(req.body)
 		.then(card => {
 			res.send({
 				info: 'Successfully Created',
