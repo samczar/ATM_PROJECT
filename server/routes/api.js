@@ -3,6 +3,8 @@ const router = express.Router()
 
 const Card = require('../models/card')
 
+const utils = require('../utils')
+
 router.get('/cards', (req, res, next) => {
 	Card.find({ name: req.query.name }).then(cards => {
 		res.send(cards)
@@ -27,7 +29,13 @@ router.get('/cardnumber/:card', (req, res, next) => {
 })
 
 router.post('/card', (req, res, next) => {
-	Card.create(req.body)
+	const name = req.body.name
+	const card_number = req.body.card_number
+	const pin = req.body.pin
+	const face = utils.fingerPrintEnroll
+	// const finger = req.body.finger
+
+	Card.create({ name: name, card_number: card_number, pin: pin, face: face })
 		.then(card => {
 			res.send({
 				info: 'Successfully Created',
@@ -162,7 +170,8 @@ router.post('/login', (req, res) => {
 	const cardNum = req.body.card_number
 	const pin = req.body.pin
 
-	Card.findOne({ card_number: cardNum }, (err, card) => {
+	Card.findOne({ card_number: cardNum, pin: pin }, (err, card) => {
+		console.log(pin)
 		if (err) {
 			res.send(err)
 		} else {
