@@ -41,6 +41,21 @@ router.post('/card', (req, res, next) => {
 		.catch(next) //passing the next gets the validation
 })
 
+router.post('/card/:id/register_fingerprint', (req, res, next) => {
+	// const id = req.body.id
+	const finger_print = utils.fingerPrintEnroll
+
+	Card.findByIdAndUpdate(
+		{ _id: req.params.id },
+		{ $set: { finger: finger_print } },
+		{ new: true }
+	).then(data => {
+		res.send({
+			info: 'successfully Added FingerPrint'
+		})
+	})
+})
+
 router.put('/card/:id', (req, res, next) => {
 	Card.findByIdAndUpdate({ _id: req.params.id }, req.body, {
 		new: true,
