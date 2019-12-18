@@ -17,7 +17,8 @@ const FingerMaker = props => {
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json'
-			}
+			},
+			body: JSON.stringify({ finger: finger })
 		})
 			.then(resp => resp.json())
 			.then(data => {
@@ -29,7 +30,7 @@ const FingerMaker = props => {
 
 	return (
 		<div>
-			<Button onClick={handleScan}>Scan Finger</Button>
+			<Button onClick={handleScan()}>Scan Finger</Button>
 			<div className="imageHolder"></div>
 			<Button buttonStyle="btn--success--solid" type="button">
 				Save
