@@ -72,9 +72,6 @@ const CardMaker = () => {
 			<button onClick={createCard}>Create Card</button>
 			<br />
 			{message}
-
-			<FaceMaker />
-			<FingerMaker />
 		</div>
 	)
 }

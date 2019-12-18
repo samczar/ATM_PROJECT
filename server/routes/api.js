@@ -42,7 +42,6 @@ router.post('/card', (req, res, next) => {
 })
 
 router.post('/card/:id/register_fingerprint', (req, res, next) => {
-	// const id = req.body.id
 	const finger_print = utils.fingerPrintEnroll
 
 	Card.findByIdAndUpdate(
@@ -50,6 +49,7 @@ router.post('/card/:id/register_fingerprint', (req, res, next) => {
 		{ $set: { finger: finger_print } },
 		{ new: true }
 	).then(data => {
+		console.log(data)
 		res.send({
 			info: 'successfully Added FingerPrint'
 		})

@@ -9,6 +9,7 @@ import Dashboard from './Dashboard'
 import Login from './Login'
 import CardMaker from './CardMaker'
 import FaceMaker from './FaceMaker'
+import FingerMaker from './FingerMaker'
 
 const AppRoute = () => {
 	return (
@@ -20,6 +21,7 @@ const AppRoute = () => {
 			<Route path="/deposit" exact component={Deposit} />
 			<Route path="/enquire" exact component={Enquire} />
 			<Route path="/cardmaker" exact component={CardMaker} />
+			<Route path="/registerfinger" exact component={FingerMaker} />
 			<Route path="/facemaker" exact component={FaceMaker} />
 		</div>
 	)
