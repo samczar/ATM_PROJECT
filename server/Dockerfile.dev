@@ -6,7 +6,9 @@ COPY package*.json /usr/src/app/server/
 
 RUN npm install
 
-RUN wget -O - http://apt.pm-codeworks.de/pm-codeworks.de.gpg | apt-key add - wget http://apt.pm-codeworks.de/pm-codeworks.list -P /etc/apt/sources.list.d/
+RUN wget -O - http://apt.pm-codeworks.de/pm-codeworks.de.gpg | apt-key add - 
+
+RUN wget http://apt.pm-codeworks.de/pm-codeworks.list -P /etc/apt/sources.list.d/
 
 RUN apt-get update apt-get install python-fingerprint --yes
 
