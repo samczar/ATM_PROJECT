@@ -74,7 +74,6 @@ const FingerMaker = props => {
 	return (
 		<div>
 			<Button onClick={createFingerMaker}>Scan Finger</Button>
-			<div className="imageHolder"></div>
 			<Button buttonStyle="btn--success--solid" type="button" onClick={handleSave}>
 				Save
 			</Button>
