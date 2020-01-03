@@ -88,11 +88,6 @@ const CardMaker = () => {
 		
 			<Button onClick={createFingerMaker}>Scan Finger</Button>
 			<br />
-			<Button buttonStyle="btn--success--solid" 
-			type="button" onClick={handleSave}>
-				Save
-			</Button>
-			<br />
 			<button onClick={createCard}>Create User</button>
 			<br />
 			{message}

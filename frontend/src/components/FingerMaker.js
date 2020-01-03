@@ -39,28 +39,28 @@ const FingerMaker = props => {
 			})
 		}
 
-	const handleSave = () => {
-		fetch(`${config.api}/api/v1/card/${id}/register_fingerprint`, {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json'
-			}
+	// const handleSave = () => {
+	// 	fetch(`${config.api}/api/v1/card/${id}/register_fingerprint`, {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			Accept: 'application/json',
+	// 			'Content-Type': 'application/json'
+	// 		}
 			
-		})
-			.then(resp => resp.ok ? resp.json())
-			.then(data => {
-				console.log(data)
-				setFinger(data)
-				setMessage(data.info)
-			})
+	// 	})
+	// 		.then(resp => resp.ok ? resp.json())
+	// 		.then(data => {
+	// 			console.log(data)
+	// 			setFinger(data)
+	// 			setMessage(data.info)
+	// 		})
 			
-	}
+// }
 
 	return (
 		<div>
 			<Button onClick={createFingerMaker}>Scan Finger</Button>
-			<Button buttonStyle="btn--success--solid" type="button" onClick={handleSave}>
+			<Button buttonStyle="btn--success--solid" type="button" >
 				Save
 			</Button>
 		</div>
