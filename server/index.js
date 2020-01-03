@@ -32,7 +32,7 @@ function createFingerPrint(req, res) {
 		var createFingerPrintMessage = data.toString();
 		var regex = /[0-9]/g
 		var foundArray = createFingerPrintMessage.match(regex)
-		var fingerPosition = found.join()
+		var fingerPosition = foundArray.join()
 		console.log(' Finger position is at ', fingerPosition)
 		console.log(data.toString())
 		res.send(fingerPosition)
