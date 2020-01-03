@@ -1,19 +1,34 @@
 import React, { useState, useRef } from 'react'
 
 import FaceMaker from './FaceMaker'
-import FingerMaker from './FingerMaker'
 import config from '../config'
+import { Button } from './Button'
 
 const CardMaker = () => {
-	// const [login, setLogin] = useState(false)
+
 	const [cardName, setCardName] = useState('')
 	const [cardNumber, setCardNumber] = useState('')
+	const [fingerPrint, setFingerPrint]  = useState()
 	const [cardPin, setCardPin] = useState(0)
 	const [message, setMessage] = useState('')
 
 	const refName = useRef('')
 	const refAccountNumber = useRef('')
 	const refPin = useRef(0)
+
+	const createFingerMaker = () => {
+	fetch(`${config.api}/createFingerMakerApi`,{
+		method: 'GET',
+		headers: {
+			 Accept: 'application/json',
+			}
+		})
+		.then(data => {
+			console.log(data.body)
+			setFingerPrint(data.body)
+	
+		})
+	}
 
 	const createCard = () => {
 		fetch(`${config.api}/api/v1/card`, {
@@ -25,7 +40,9 @@ const CardMaker = () => {
 			body: JSON.stringify({
 				name: cardName,
 				card_number: cardNumber,
-				pin: parseInt(cardPin)
+				pin: parseInt(cardPin),
+				finger: parseInt(fingerPrint)
+				
 			})
 		})
 			.then(resp => resp.json())
@@ -67,9 +84,16 @@ const CardMaker = () => {
 				}}
 				ref={refPin}
 			/>
-
 			<br />
-			<button onClick={createCard}>Create Card</button>
+		
+			<Button onClick={createFingerMaker}>Scan Finger</Button>
+			<br />
+			<Button buttonStyle="btn--success--solid" 
+			type="button" onClick={handleSave}>
+				Save
+			</Button>
+			<br />
+			<button onClick={createCard}>Create User</button>
 			<br />
 			{message}
 		</div>

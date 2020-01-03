@@ -39,34 +39,20 @@ const FingerMaker = props => {
 			})
 		}
 
-		const deleteFingerMaker = () => {
-		fetch(`${config.api}/deleteFingerMakerApi`,{
-			method: 'GET',
-			headers: {
-				 Accept: 'application/json',
-				}
-			})
-			.then(data => {
-				console.log(data.body)
-				setFinger(data.body)
-		
-			})
-		}	
-
 	const handleSave = () => {
 		fetch(`${config.api}/api/v1/card/${id}/register_fingerprint`, {
-			method: 'GET',
+			method: 'POST',
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json'
 			}
 			
 		})
-			// .then(resp => resp.ok ? resp.json())
+			.then(resp => resp.ok ? resp.json())
 			.then(data => {
 				console.log(data)
 				setFinger(data)
-				// setMessage(data.info)
+				setMessage(data.info)
 			})
 			
 	}
@@ -77,7 +63,6 @@ const FingerMaker = props => {
 			<Button buttonStyle="btn--success--solid" type="button" onClick={handleSave}>
 				Save
 			</Button>
-			<Button buttonStyle="btn--warning--solid" onClick={deleteFingerMaker}>Delete</Button>
 		</div>
 	)
 }

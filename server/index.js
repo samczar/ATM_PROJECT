@@ -22,7 +22,6 @@ app.use('/api/v1', require('./routes/api'))
 
 app.get('/createfingerMakerApi', createFingerPrint)
 app.get('/searchFingerMakerApi', searchFingerPrint)
-app.get('/deleteFingerMakerApi', deleteFingerPrint)
 
 function createFingerPrint(req, res) {
 	var spawn = require('child_process').spawn
@@ -30,8 +29,13 @@ function createFingerPrint(req, res) {
 		'./routes/example_enroll.py'	
 	])
 	process.stdout.on('data', function(data) {
+		var createFingerPrintMessage = data.toString();
+		var regex = /[0-9]/g
+		var foundArray = createFingerPrintMessage.match(regex)
+		var fingerPosition = found.join()
+		console.log(' Finger position is at ', fingerPosition)
 		console.log(data.toString())
-		res.send(data.toString())
+		res.send(fingerPosition)
 	})
 }
 
@@ -45,18 +49,6 @@ function searchFingerPrint(req, res) {
 		res.send(data.toString())
 	})
 }
-
-function deleteFingerPrint(req, res) {
-	var spawn = require('child_process').spawn
-	var process = spawn('python', [
-		'./routes/example_delete.py'	
-	])
-	process.stdout.on('data', function(data) {
-		console.log(data.toString())
-		res.send(data.toString())
-	})
-}
-
 
 //Error Handling Middleware
 app.use((err, req, res, next) => {

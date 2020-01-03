@@ -17,7 +17,7 @@ const cardSchema = new Schema({
 	},
 	pin: { type: Number, trim: true, minlength: [4, 'Pin is Only 4 digit'] },
 	face: { type: String },
-	finger: { type: String },
+	finger: { type: Number, trim: true },
 	active: {
 		type: Boolean,
 		default: true
