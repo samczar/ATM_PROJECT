@@ -5,6 +5,7 @@ const Card = require('../models/card')
 
 const utils = require('../utils')
 
+
 router.get('/cards', (req, res, next) => {
 	Card.find({ name: req.query.name }).then(cards => {
 		res.send(cards)
@@ -41,18 +42,15 @@ router.post('/card', (req, res, next) => {
 		.catch(next) //passing the next gets the validation
 })
 
-router.post('/card/:id/register_fingerprint', (req, res, next) => {
-	const finger_print = utils.fingerPrintEnroll
-
+router.get('/card/:id/register_fingerprint', (req, res, next) => {
+	
 	Card.findByIdAndUpdate(
 		{ _id: req.params.id },
-		{ $set: { finger: finger_print } },
+		{ $set: { finger: result } },
 		{ new: true }
 	).then(data => {
 		console.log(data)
-		res.send({
-			info: 'successfully Added FingerPrint'
-		})
+		res.send(data)
 	})
 })
 

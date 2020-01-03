@@ -21,7 +21,7 @@ const AppRoute = () => {
 			<Route path="/deposit" exact component={Deposit} />
 			<Route path="/enquire" exact component={Enquire} />
 			<Route path="/cardmaker" exact component={CardMaker} />
-			<Route path="/registerfinger" exact component={FingerMaker} />
+			<Route path="/fingermaker" exact component={FingerMaker} />
 			<Route path="/facemaker" exact component={FaceMaker} />
 		</div>
 	)

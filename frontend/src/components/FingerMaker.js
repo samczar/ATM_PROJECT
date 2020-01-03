@@ -12,27 +12,42 @@ const FingerMaker = props => {
 		setId(sessionStorage.getItem('account_id') || id)
 	})
 	const handleScan = () => {
+		fetch(`${config.api}/fingerMakerApi`,{
+			method: 'GET',
+			headers: {
+				 Accept: 'application/json',
+				}
+			})
+			.then(data => {
+				console.log(data.body)
+				setFinger(data.body)
+		
+			})
+		}
+
+	const handleSave = () => {
 		fetch(`${config.api}/api/v1/card/${id}/register_fingerprint`, {
-			method: 'POST',
+			method: 'GET',
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ finger: finger })
+			}
+			
 		})
-			.then(resp => resp.json())
+			// .then(resp => resp.ok ? resp.json())
 			.then(data => {
 				console.log(data)
 				setFinger(data)
 				// setMessage(data.info)
 			})
+			
 	}
 
 	return (
 		<div>
-			<Button onClick={handleScan()}>Scan Finger</Button>
+			<Button onClick={handleScan}>Scan Finger</Button>
 			<div className="imageHolder"></div>
-			<Button buttonStyle="btn--success--solid" type="button">
+			<Button buttonStyle="btn--success--solid" type="button" onClick={handleSave}>
 				Save
 			</Button>
 			<Button buttonStyle="btn--warning--solid">Cancel</Button>
