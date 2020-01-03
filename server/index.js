@@ -20,21 +20,37 @@ app.use(body_parser.json())
 //Initialise Routes
 app.use('/api/v1', require('./routes/api'))
 
-app.get('/fingerMakerApi', setFingerPrint)
+app.get('/createfingerMakerApi', createFingerPrint)
+app.get('/searchFingerMakerApi', searchFingerPrint)
+app.get('/deleteFingerMakerApi', deleteFingerPrint)
 
-function setFingerPrint(req, res) {
-	// Use child_process.spawn method from
-	// child_process module and assign it
-	// to variable spawn
+function createFingerPrint(req, res) {
 	var spawn = require('child_process').spawn
-
 	var process = spawn('python', [
-		'./routes/example_search.py'
-		
+		'./routes/example_enroll.py'	
 	])
+	process.stdout.on('data', function(data) {
+		console.log(data.toString())
+		res.send(data.toString())
+	})
+}
 
-	// Takes stdout data from script which executed
-	// with arguments and send this data to res object
+function searchFingerPrint(req, res) {
+	var spawn = require('child_process').spawn
+	var process = spawn('python', [
+		'./routes/example_search.py'	
+	])
+	process.stdout.on('data', function(data) {
+		console.log(data.toString())
+		res.send(data.toString())
+	})
+}
+
+function deleteFingerPrint(req, res) {
+	var spawn = require('child_process').spawn
+	var process = spawn('python', [
+		'./routes/example_delete.py'	
+	])
 	process.stdout.on('data', function(data) {
 		console.log(data.toString())
 		res.send(data.toString())
