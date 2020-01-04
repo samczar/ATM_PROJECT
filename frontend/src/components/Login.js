@@ -2,17 +2,27 @@ import React, { useState, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import config from '../config'
+import { Button } from './Button'
 
 const Login = () => {
 	const [accountNumber, setAccountNumber] = useState('')
 	const [pin, setPin] = useState('')
 	const [login, setLogin] = useState(false)
+	const [finger, setFinger] = useState('')
 
 	const accountNumberRef = useRef(null)
 	const pinRef = useRef(null)
 	const history = useHistory()
+
+	const handleScanFinger = () => {
+		fetch(`${config.api}/api/searchFingerMakerApi`)
+		.then(resp=> resp.json())
+		.then(data =>{
+			setFinger(data.info)
+		})
+	}
 	const handleLogin = () => {
-		if (accountNumber.length === 0 || pin.length === 0) {
+		if (finger.length === 0 || pin.length === 0) {
 			return
 		}
 		fetch(`${config.api}/api/v1/login`, {
@@ -22,7 +32,7 @@ const Login = () => {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				card_number: accountNumber,
+				finger: parseInt(finger),
 				pin: parseInt(pin)
 			})
 		})
@@ -46,12 +56,14 @@ const Login = () => {
 
 	return (
 		<>
-			<input
+			{/* <input
 				type="text"
 				placeholder="Account Number"
 				onChange={e => setAccountNumber(e.target.value)}
 				ref={accountNumberRef}
-			/>
+			/> */}
+			<Button  buttonStyle="btn--success--solid" type="button"
+			 onClick={handleScanFinger}>Scan finger</Button>
 			<br />
 			<input
 				type="password"
