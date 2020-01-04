@@ -29,13 +29,27 @@ function createFingerPrint(req, res) {
 		'./routes/example_enroll.py'	
 	])
 	process.stdout.on('data', function(data) {
-		var createFingerPrintMessage = data.toString();
-		var regex = /[0-9]/g
-		var foundArray = createFingerPrintMessage.match(regex)
-		var fingerPosition = foundArray.join()
-		console.log(' Finger position is at ', fingerPosition)
-		console.log(data.toString())
-		res.send(fingerPosition)
+	var createFingerPrintMessage = data.toString()
+	console.log(createFingerPrintMessage)
+
+	//var regex = /#[0-9]+$/g
+	var regex = /#\d+/g
+	var foundArray = createFingerPrintMessage.match(regex)
+	console.log('foundArray ',foundArray)
+	var valueText = JSON.stringify(foundArray)
+	console.log('valueText ', valueText)
+	var regexNumber = /[0-9]/g
+	var getNumber = valueText.match(regexNumber)
+	
+	if(getNumber == null ){
+	console.log('Null value')
+	}else{
+	var mainValue = getNumber.join('')
+	console.log('number ', mainValue)
+	}
+	
+
+	res.send({info: mainValue, error: '', duplicate: ''})
 	})
 }
 

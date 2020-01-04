@@ -8,7 +8,7 @@ const CardMaker = () => {
 
 	const [cardName, setCardName] = useState('')
 	const [cardNumber, setCardNumber] = useState('')
-	const [fingerPrint, setFingerPrint]  = useState()
+	const [fingerPrint, setFingerPrint]  = useState('')
 	const [cardPin, setCardPin] = useState(0)
 	const [message, setMessage] = useState('')
 
@@ -16,18 +16,12 @@ const CardMaker = () => {
 	const refAccountNumber = useRef('')
 	const refPin = useRef(0)
 
-	const createFingerMaker = () => {
-	fetch(`${config.api}/createFingerMakerApi`,{
-		method: 'GET',
-		headers: {
-			 Accept: 'application/json',
-			}
-		})
-		.then(data => {
-			console.log(data.body)
-			setFingerPrint(data.body)
-	
-		})
+	const createFingerMaker = async () => {
+	var response = await fetch(`${config.api}/createFingerMakerApi`)
+	const data = await response.json()
+	setFingerPrint(data.info)
+	console.log(data)
+
 	}
 
 	const createCard = () => {
