@@ -10,10 +10,12 @@ const Withdrawal = () => {
 	const [debit, setDebit] = useState(0)
 	const [id, setId] = useState('')
 	const [finger, setFinger] = useState('')
+	const [e_finger, setEFinger] = useState('')
 	const [message, setMessage] = useState('')
 
 	useEffect(() => {
 		setId(sessionStorage.getItem('account_id') || id)
+		setEFinger(sessionStorage.getItem('finger_encrypt') || e_finger)
 		setLogin(sessionStorage.getItem('login_state') || login)
 	})
 
@@ -22,16 +24,20 @@ const Withdrawal = () => {
 	const debitHandler = () => {
 		if (debit === '' || debit === 0) {
 			setMessage('Amount can not be 0 or empty')
-		}
+			return
+		}else if(debit !== 0 || debit !== ''){
 		fetch(`${config.api}/searchFingerMakerApi`)
 			.then(resp => resp.json())
 			.then(data => {
 				setFinger(data.info)
 			})
-
-		if (finger === ' ' || finger === null) {
-			setMessage('Finger Print is null')
-		} else {
+		}
+		console.log('finger ', finger)
+		if (finger === '' || finger === null || finger === 'undefined') {
+			
+			setMessage('Finger Print is needed for  withdrawal')
+			return
+		} else if(finger === e_finger) {
 			fetch(`${config.api}/api/v1/card/${id}/withdrawal?debit=${debit}`, {
 				method: 'POST',
 				headers: {
@@ -48,6 +54,7 @@ const Withdrawal = () => {
 		}
 	}
 
+}
 	const debitLoad = () => {
 		if (login === false) {
 			return <Login />

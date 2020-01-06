@@ -108,7 +108,7 @@ router.post('/card/:id/withdrawal', (req, res, next) => {
 			res.send(err)
 		} else {
 			if (money.balance < 1 || money.balance < debit) {
-				console.log('your account balance is insufficients')
+				res.send('your account balance is insufficients')
 			} else {
 				Card.findByIdAndUpdate(
 					{ _id: req.params.id },
