@@ -25,19 +25,18 @@ const Withdrawal = () => {
 		if (debit === '' || debit === 0) {
 			setMessage('Amount can not be 0 or empty')
 			return
-		}else if(debit !== 0 || debit !== ''){
-		fetch(`${config.api}/searchFingerMakerApi`)
-			.then(resp => resp.json())
-			.then(data => {
-				setFinger(data.info)
-			})
+		} else if (debit !== 0 || debit !== '') {
+			fetch(`${config.api}/searchFingerMakerApi`)
+				.then(resp => resp.json())
+				.then(data => {
+					setFinger(data.info)
+				})
 		}
 		console.log('finger ', finger)
 		if (finger === '' || finger === null || finger === 'undefined') {
-			
 			setMessage('Finger Print is needed for  withdrawal')
 			return
-		} else if(finger === e_finger) {
+		} else if (finger === e_finger) {
 			fetch(`${config.api}/api/v1/card/${id}/withdrawal?debit=${debit}`, {
 				method: 'POST',
 				headers: {
@@ -51,10 +50,11 @@ const Withdrawal = () => {
 					setMessage(`Your withdrawal of ${debit} was successful`)
 					inputHandlerRef.current.value = '0'
 				})
+		} else {
+			setMessage('Finger Print do not match')
 		}
 	}
 
-}
 	const debitLoad = () => {
 		if (login === false) {
 			return <Login />
