@@ -11,6 +11,8 @@ import CardMaker from './CardMaker'
 import FaceMaker from './FaceMaker'
 import FingerMaker from './FingerMaker'
 
+import './app.css'
+
 const AppRoute = () => {
 	return (
 		<div>
