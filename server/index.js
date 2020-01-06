@@ -69,6 +69,7 @@ function searchFingerPrint(req, res) {
 
 		if (getNumber == null) {
 			console.log('Null value')
+			res.send('Finger Print is Null')
 		} else {
 			var mainValue = getNumber.join('')
 			console.log('number ', mainValue)

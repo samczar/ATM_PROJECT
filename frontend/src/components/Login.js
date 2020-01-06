@@ -9,6 +9,7 @@ const Login = () => {
 	const [pin, setPin] = useState('')
 	const [login, setLogin] = useState(false)
 	const [finger, setFinger] = useState('')
+	const [message, setMessage] = useState('')
 
 	const pinRef = useRef(null)
 	const history = useHistory()
@@ -22,7 +23,12 @@ const Login = () => {
 	}
 
 	const handleLogin = () => {
-		if (finger.length === 0 || pin.length === 0) {
+		if (finger.length === 0) {
+			setMessage('finger print cannot be empty')
+			return
+		}
+		if (pin.length < 4 || pin === '') {
+			setMessage('pin print cannot be empty')
 			return
 		}
 		fetch(`${config.api}/api/v1/login`, {
@@ -42,13 +48,12 @@ const Login = () => {
 				const account_name = data.data.name
 				const account_number = data.data.card_number
 				const account_id = data.data._id
-				const finger_id = data.data.finger
 
 				sessionStorage.setItem('name', account_name)
 				sessionStorage.setItem('account_number', account_number)
 				sessionStorage.setItem('account_id', account_id)
 				sessionStorage.setItem('login_state', true)
-				sessionStorage.setItem('finger_encrypted', finger) 
+				sessionStorage.setItem('finger_encrypted', finger)
 
 				setLogin(true)
 
@@ -76,6 +81,7 @@ const Login = () => {
 				/>
 				<br />
 				<Button onClick={handleLogin}>Enter</Button>
+				{message}
 			</div>
 		</div>
 	)
