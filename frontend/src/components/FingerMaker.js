@@ -12,32 +12,28 @@ const FingerMaker = props => {
 		setId(sessionStorage.getItem('account_id') || id)
 	})
 	const createFingerMaker = () => {
-		fetch(`${config.api}/createFingerMakerApi`,{
+		fetch(`${config.api}/createFingerMakerApi`, {
 			method: 'GET',
 			headers: {
-				 Accept: 'application/json',
-				}
-			})
-			.then(data => {
-				console.log(data.body)
-				setFinger(data.body)
-		
-			})
-		}
+				Accept: 'application/json'
+			}
+		}).then(data => {
+			console.log(data.body)
+			setFinger(data.body)
+		})
+	}
 
-		const searchFingerMaker = () => {
-		fetch(`${config.api}/searchFingerMakerApi`,{
+	const searchFingerMaker = () => {
+		fetch(`${config.api}/searchFingerMakerApi`, {
 			method: 'GET',
 			headers: {
-				 Accept: 'application/json',
-				}
-			})
-			.then(data => {
-				console.log(data.body)
-				setFinger(data.body)
-		
-			})
-		}
+				Accept: 'application/json'
+			}
+		}).then(data => {
+			console.log(data.body)
+			setFinger(data.body)
+		})
+	}
 
 	// const handleSave = () => {
 	// 	fetch(`${config.api}/api/v1/card/${id}/register_fingerprint`, {
@@ -46,7 +42,7 @@ const FingerMaker = props => {
 	// 			Accept: 'application/json',
 	// 			'Content-Type': 'application/json'
 	// 		}
-			
+
 	// 	})
 	// 		.then(resp => resp.ok ? resp.json())
 	// 		.then(data => {
@@ -54,13 +50,13 @@ const FingerMaker = props => {
 	// 			setFinger(data)
 	// 			setMessage(data.info)
 	// 		})
-			
-// }
+
+	// }
 
 	return (
 		<div>
 			<Button onClick={createFingerMaker}>Scan Finger</Button>
-			<Button buttonStyle="btn--success--solid" type="button" >
+			<Button buttonStyle="btn--success--solid" type="button">
 				Save
 			</Button>
 		</div>

@@ -3,9 +3,6 @@ const router = express.Router()
 
 const Card = require('../models/card')
 
-const utils = require('../utils')
-
-
 router.get('/cards', (req, res, next) => {
 	Card.find({ name: req.query.name }).then(cards => {
 		res.send(cards)
@@ -43,7 +40,6 @@ router.post('/card', (req, res, next) => {
 })
 
 router.get('/card/:id/register_fingerprint', (req, res, next) => {
-	
 	Card.findByIdAndUpdate(
 		{ _id: req.params.id },
 		{ $set: { finger: result } },
@@ -182,7 +178,12 @@ router.post('/login', (req, res) => {
 		if (err) {
 			res.send(err)
 		} else {
-			if (parseInt(pin) !== parseInt(card.pin) || card.pin === '' || parseInt(finger) !== parseInt(card.finger) || card.finger === '') {
+			if (
+				parseInt(pin) !== parseInt(card.pin) ||
+				card.pin === '' ||
+				parseInt(finger) !== parseInt(card.finger) ||
+				card.finger === ''
+			) {
 				res.send({ err: '-2', info: 'wrong' })
 			} else {
 				Card.findOneAndUpdate(

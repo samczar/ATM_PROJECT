@@ -30,7 +30,6 @@ body {
 	width: 100vw;
 	display: flex;
 	flex-direction: column;
-	
 }
 
 .home .template {
@@ -48,10 +47,4 @@ body {
 	border-radius: 10px 10px;
 	font-size: 1rem;
 	background-color: beige;
-}
-
-.bnk {
-	border: 1px solid black;
-	padding: 1rem;
-	background-color: skyblue;
 }

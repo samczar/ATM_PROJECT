@@ -1,14 +1,12 @@
 import React, { useState, useRef } from 'react'
 
-import FaceMaker from './FaceMaker'
 import config from '../config'
 import { Button } from './Button'
 
 const CardMaker = () => {
-
 	const [cardName, setCardName] = useState('')
 	const [cardNumber, setCardNumber] = useState('')
-	const [fingerPrint, setFingerPrint]  = useState('')
+	const [fingerPrint, setFingerPrint] = useState('')
 	const [cardPin, setCardPin] = useState(0)
 	const [message, setMessage] = useState('')
 
@@ -17,11 +15,10 @@ const CardMaker = () => {
 	const refPin = useRef(0)
 
 	const createFingerMaker = async () => {
-	var response = await fetch(`${config.api}/createFingerMakerApi`)
-	const data = await response.json()
-	setFingerPrint(data.info)
-	console.log(data)
-
+		var response = await fetch(`${config.api}/createFingerMakerApi`)
+		const data = await response.json()
+		setFingerPrint(data.info)
+		console.log(data)
 	}
 
 	const createCard = () => {
@@ -36,7 +33,6 @@ const CardMaker = () => {
 				card_number: cardNumber,
 				pin: parseInt(cardPin),
 				finger: parseInt(fingerPrint)
-				
 			})
 		})
 			.then(resp => resp.json())
@@ -50,41 +46,50 @@ const CardMaker = () => {
 	}
 
 	return (
-		<div>
-			<input
-				type="text"
-				placeholder="Card Name"
-				onChange={e => {
-					setCardName(e.target.value)
-				}}
-				ref={refName}
-			/>
-			<br />
-			<input
-				type="text"
-				placeholder="Card Number"
-				onChange={e => {
-					setCardNumber(e.target.value)
-				}}
-				ref={refAccountNumber}
-			/>
-			<br />
-			<input
-				type="number"
-				placeholder="Pin"
-				max="4"
-				onChange={e => {
-					setCardPin(e.target.value)
-				}}
-				ref={refPin}
-			/>
-			<br />
-		
-			<Button onClick={createFingerMaker}>Scan Finger</Button>
-			<br />
-			<button onClick={createCard}>Create User</button>
-			<br />
-			{message}
+		<div className="home">
+			<div className="template">
+				<input
+					type="text"
+					placeholder="Card Name"
+					onChange={e => {
+						setCardName(e.target.value)
+					}}
+					ref={refName}
+					className="textInput"
+				/>
+				<br />
+				<br />
+				<input
+					type="text"
+					placeholder="Card Number"
+					onChange={e => {
+						setCardNumber(e.target.value)
+					}}
+					ref={refAccountNumber}
+					className="textInput"
+				/>
+				<br />
+				<br />
+				<input
+					type="number"
+					placeholder="Pin"
+					max="4"
+					onChange={e => {
+						setCardPin(e.target.value)
+					}}
+					ref={refPin}
+					className="textInput"
+				/>
+				<br />
+				<br />
+				<Button onClick={createFingerMaker}>Scan Finger</Button>
+				<br />
+				<br />
+				<Button onClick={createCard}>Create User</Button>
+				<br />
+				<br />
+				{message}
+			</div>
 		</div>
 	)
 }

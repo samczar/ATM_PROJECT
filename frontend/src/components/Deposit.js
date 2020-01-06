@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-import Keypad from './Keypad'
 import Login from './Login'
 import config from '../config'
+import { Button } from './Button'
 
 const Deposit = () => {
 	const [login, setLogin] = useState(false)
@@ -38,20 +38,19 @@ const Deposit = () => {
 			return <Login />
 		} else if (login !== false) {
 			return (
-				<>
+				<div className="home">
 					<input
 						type="number"
 						placeholder="Amount"
 						onChange={e => setDeposit(e.target.value)}
 						ref={inputHandlerRef}
+						className="textInput"
 					/>
 
-					<button onClick={depositHandler}>Deposit</button>
+					<Button onClick={depositHandler}>Deposit</Button>
 					<br />
 					{message}
-
-					<Keypad />
-				</>
+				</div>
 			)
 		}
 	}

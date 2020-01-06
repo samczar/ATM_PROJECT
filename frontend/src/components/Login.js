@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 
 import config from '../config'
 import { Button } from './Button'
+import Keypad from './Keypad'
 
 const Login = () => {
 	const [pin, setPin] = useState('')

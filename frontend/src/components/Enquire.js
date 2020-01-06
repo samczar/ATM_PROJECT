@@ -32,7 +32,7 @@ const Enquire = () => {
 			return <Login />
 		} else if (login !== false) {
 			return (
-				<>
+				<div className="home">
 					<p>
 						<b>
 							{message}
@@ -40,7 +40,7 @@ const Enquire = () => {
 						</b>
 					</p>
 					<br />
-				</>
+				</div>
 			)
 		}
 	}

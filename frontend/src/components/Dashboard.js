@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Login from './Login'
 import config from '../config'
+import { Button } from './Button'
 
 const Dashboard = () => {
 	const [name, setName] = useState('')
@@ -30,15 +31,25 @@ const Dashboard = () => {
 							{name} & card Number {accountNumber}
 						</h3>
 						<br />
-						<Link to="/deposit">Deposit</Link>
+						<Button>
+							<Link to="/deposit">Deposit</Link>
+						</Button>
 						<br />
-						<Link to="/withdrawal">Withdrawal</Link>
+						<Button>
+							<Link to="/withdrawal">Withdrawal</Link>
+						</Button>
+
 						<br />
-						<Link to="/enquire">Balance</Link>
+						<Button>
+							<Link to="/enquire">Balance</Link>
+						</Button>
+
 						<br />
-						<Link to="/" onClick={Logout}>
-							Logout
-						</Link>
+						<Button>
+							<Link to="/" onClick={Logout}>
+								Logout
+							</Link>
+						</Button>
 					</div>
 				</div>
 			)
