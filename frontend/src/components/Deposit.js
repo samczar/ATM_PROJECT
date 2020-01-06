@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import Login from './Login'
 import config from '../config'
 import { Button } from './Button'
+import BackButton from './BackButton'
 
 const Deposit = () => {
 	const [login, setLogin] = useState(false)
@@ -48,6 +49,7 @@ const Deposit = () => {
 					/>
 
 					<Button onClick={depositHandler}>Deposit</Button>
+					<BackButton />
 					<br />
 					{message}
 				</div>

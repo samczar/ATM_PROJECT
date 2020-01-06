@@ -9,6 +9,7 @@ const Dashboard = () => {
 	const [name, setName] = useState('')
 	const [login, setLogin] = useState(false)
 	const [accountNumber, setAcountNumber] = useState('')
+	const [message, setMessage] = useState('')
 
 	useEffect(() => {
 		setName(sessionStorage.getItem('name') || name)
@@ -18,6 +19,10 @@ const Dashboard = () => {
 
 	const Logout = () => {
 		fetch(`${config.api}/api/v1/logout`).then(sessionStorage.clear())
+	}
+
+	const handleCardDeactivation = () => {
+		setMessage('Card Has Being Deactivated')
 	}
 
 	const dashboardLoad = () => {
@@ -44,6 +49,10 @@ const Dashboard = () => {
 							<Link to="/enquire">Balance</Link>
 						</Button>
 
+						<br />
+
+						<Button onClick={handleCardDeactivation}>DeActivate Card</Button>
+						<div>{message}</div>
 						<br />
 						<Button>
 							<Link to="/" onClick={Logout}>

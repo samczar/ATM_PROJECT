@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import Login from './Login'
 import config from '../config'
+import BackButton from './BackButton'
 
 const Enquire = () => {
 	const [login, setLogin] = useState(false)
@@ -40,6 +41,8 @@ const Enquire = () => {
 						</b>
 					</p>
 					<br />
+					<br />
+					<BackButton />
 				</div>
 			)
 		}

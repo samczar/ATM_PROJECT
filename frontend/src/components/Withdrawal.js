@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import Login from './Login'
 import config from '../config'
 import { Button } from './Button'
+import BackButton from './BackButton'
 
 const Withdrawal = () => {
 	const [login, setLogin] = useState(false)
@@ -49,6 +50,7 @@ const Withdrawal = () => {
 						/>
 
 						<Button onClick={debitHandler}>Debit</Button>
+						<BackButton />
 						<br />
 						{message}
 					</div>
