@@ -24,10 +24,6 @@ const Dashboard = () => {
 	}
 
 	const handleCardDeactivation = () => {
-		setMessage('Card Has Being Deactivated')
-	}
-
-	const confirm = () => {
 		confirmAlert({
 			title: 'Deactivate Card?',
 			message: 'Are you sure to do this.',
@@ -35,13 +31,12 @@ const Dashboard = () => {
 				{
 					label: 'Yes',
 					onClick: () => {
-						alert('Click Yes')
 						setMessage('Card Has Being Deactivated')
 					}
 				},
 				{
 					label: 'No',
-					onClick: () => alert('Click No')
+					onClick: () => alert('please be Careful')
 				}
 			]
 		})
@@ -67,9 +62,9 @@ const Dashboard = () => {
 						<Button>
 							<Link to="/enquire">Balance</Link>
 						</Button>
-						<div className="container">
-							<button onClick={confirm}>Confirm dialog</button>
-						</div>
+
+						<Button onClick={handleCardDeactivation}>Deactivate Card</Button>
+
 						<br />
 						<div>{message}</div>
 						<br />
