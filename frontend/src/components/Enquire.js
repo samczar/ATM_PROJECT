@@ -34,15 +34,17 @@ const Enquire = () => {
 		} else if (login !== false) {
 			return (
 				<div className="home">
-					<p>
-						<b>
-							{message}
-							{balance}
-						</b>
-					</p>
-					<br />
-					<br />
-					<BackButton />
+					<div className="template">
+						<p>
+							<b>
+								{message}
+								{balance}
+							</b>
+						</p>
+						<br />
+						<br />
+						<BackButton />
+					</div>
 				</div>
 			)
 		}
