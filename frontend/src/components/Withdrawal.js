@@ -9,6 +9,7 @@ const Withdrawal = () => {
 	const [login, setLogin] = useState(false)
 	const [debit, setDebit] = useState(0)
 	const [id, setId] = useState('')
+	const [finger, setFinger] = useState('')
 	const [message, setMessage] = useState('')
 
 	useEffect(() => {
