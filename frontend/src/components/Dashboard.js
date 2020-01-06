@@ -39,19 +39,15 @@ const Dashboard = () => {
 						<Button>
 							<Link to="/deposit">Deposit</Link>
 						</Button>
-						<br />
 						<Button>
 							<Link to="/withdrawal">Withdrawal</Link>
 						</Button>
-
 						<br />
 						<Button>
 							<Link to="/enquire">Balance</Link>
 						</Button>
-
-						<br />
-
 						<Button onClick={handleCardDeactivation}>DeActivate Card</Button>
+						<br />
 						<div>{message}</div>
 						<br />
 						<Button>
