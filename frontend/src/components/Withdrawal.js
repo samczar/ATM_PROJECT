@@ -19,19 +19,32 @@ const Withdrawal = () => {
 	const inputHandlerRef = useRef(0)
 
 	const debitHandler = () => {
-		fetch(`${config.api}/api/v1/card/${id}/withdrawal?debit=${debit}`, {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ debit: parseInt(debit) })
-		})
+		if (debit === '' || debit === 0) {
+			setMessage('Amount can not be 0 or empty')
+		}
+		fetch(`${config.api}/searchFingerMakerApi`)
 			.then(resp => resp.json())
 			.then(data => {
-				setMessage(`Your withdrawal of ${debit} was successful`)
-				inputHandlerRef.current.value = '0'
+				setFinger(data.info)
 			})
+
+		if (finger === ' ' || finger === null) {
+			setMessage('Finger Print is null')
+		} else {
+			fetch(`${config.api}/api/v1/card/${id}/withdrawal?debit=${debit}`, {
+				method: 'POST',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ debit: parseInt(debit) })
+			})
+				.then(resp => resp.json())
+				.then(data => {
+					setMessage(`Your withdrawal of ${debit} was successful`)
+					inputHandlerRef.current.value = '0'
+				})
+		}
 	}
 
 	const debitLoad = () => {
@@ -49,7 +62,7 @@ const Withdrawal = () => {
 							className="textInput"
 						/>
 
-						<Button onClick={debitHandler}>Debit</Button>
+						<Button onClick={debitHandler}>withdraw</Button>
 						<BackButton />
 						<br />
 						{message}
