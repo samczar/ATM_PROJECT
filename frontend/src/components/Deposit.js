@@ -40,18 +40,20 @@ const Deposit = () => {
 		} else if (login !== false) {
 			return (
 				<div className="home">
-					<input
-						type="number"
-						placeholder="Amount"
-						onChange={e => setDeposit(e.target.value)}
-						ref={inputHandlerRef}
-						className="textInput"
-					/>
+					<div className="template">
+						<input
+							type="number"
+							placeholder="Amount"
+							onChange={e => setDeposit(e.target.value)}
+							ref={inputHandlerRef}
+							className="textInput"
+						/>
 
-					<Button onClick={depositHandler}>Deposit</Button>
-					<BackButton />
-					<br />
-					{message}
+						<Button onClick={depositHandler}>Deposit</Button>
+						<BackButton />
+						<br />
+						{message}
+					</div>
 				</div>
 			)
 		}
