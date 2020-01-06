@@ -24,20 +24,22 @@ const Dashboard = () => {
 			return <Login />
 		} else if (login !== false) {
 			return (
-				<div>
-					<h3>
-						{name} & card Number {accountNumber}
-					</h3>
-					<br />
-					<Link to="/deposit">Deposit</Link>
-					<br />
-					<Link to="/withdrawal">Withdrawal</Link>
-					<br />
-					<Link to="/enquire">Balance</Link>
-					<br />
-					<Link to="/" onClick={Logout}>
-						Logout
-					</Link>
+				<div className="home">
+					<div className="template">
+						<h3>
+							{name} & card Number {accountNumber}
+						</h3>
+						<br />
+						<Link to="/deposit">Deposit</Link>
+						<br />
+						<Link to="/withdrawal">Withdrawal</Link>
+						<br />
+						<Link to="/enquire">Balance</Link>
+						<br />
+						<Link to="/" onClick={Logout}>
+							Logout
+						</Link>
+					</div>
 				</div>
 			)
 		}

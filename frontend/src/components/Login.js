@@ -5,26 +5,21 @@ import config from '../config'
 import { Button } from './Button'
 
 const Login = () => {
-	const [accountNumber, setAccountNumber] = useState('')
 	const [pin, setPin] = useState('')
-	const [login, setLogin] = useState(false)
+	const [setLogin] = useState(false)
 	const [finger, setFinger] = useState('')
-	const [imageName, setImageName] = useState('')
 
-	const accountNumberRef = useRef(null)
 	const pinRef = useRef(null)
 	const history = useHistory()
 
 	const handleScanFinger = () => {
 		fetch(`${config.api}/searchFingerMakerApi`)
-		.then(resp=> resp.json())
-		.then(data =>{
-			setFinger(data.info)
-		})
+			.then(resp => resp.json())
+			.then(data => {
+				setFinger(data.info)
+			})
 	}
-	const handleCaptureImage = () =>{
-		
-    }
+
 	const handleLogin = () => {
 		if (finger.length === 0 || pin.length === 0) {
 			return
@@ -59,29 +54,27 @@ const Login = () => {
 	}
 
 	return (
-		<>
-			{/* <input
-				type="text"
-				placeholder="Account Number"
-				onChange={e => setAccountNumber(e.target.value)}
-				ref={accountNumberRef}
-			/> */}
-			<Button  buttonStyle="btn--success--solid" type="button"
-			 onClick={handleScanFinger}>Scan finger</Button>
-			<br />
-			<Button buttonStyle="btn--warning--solid" type="button"
-			 onClick={handleCaptureImage}>Capture image</Button>
-			<br />
-			<input
-				type="password"
-				placeholder="Pin"
-				onChange={e => setPin(e.target.value)}
-				ref={pinRef}
-			/>
-			<br />
-			<button onClick={handleLogin}>Enter</button>
-			<button>Cancel</button>
-		</>
+		<div className="home">
+			<div className="template">
+				<Button
+					buttonStyle="btn--success--solid"
+					type="button"
+					onClick={handleScanFinger}
+				>
+					Scan finger
+				</Button>
+				<br />
+				<input
+					type="password"
+					placeholder="Pin"
+					onChange={e => setPin(e.target.value)}
+					ref={pinRef}
+					className="textInput"
+				/>
+				<br />
+				<Button onClick={handleLogin}>Enter</Button>
+			</div>
+		</div>
 	)
 }
 
