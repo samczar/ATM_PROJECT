@@ -30,8 +30,7 @@ body {
 	width: 100vw;
 	display: flex;
 	flex-direction: column;
-	align-content: center;
-	justify-content: center;
+	
 }
 
 .home .template {
@@ -39,7 +38,7 @@ body {
 	margin-right: auto;
 	border-radius: 10px 10px;
 	border: 1px solid skyblue;
-	padding: 5rem;
+	padding: 2rem;
 }
 
 .textInput {
@@ -51,7 +50,7 @@ body {
 	background-color: beige;
 }
 
-.btnlink {
+.bnk {
 	border: 1px solid black;
 	padding: 1rem;
 	background-color: skyblue;

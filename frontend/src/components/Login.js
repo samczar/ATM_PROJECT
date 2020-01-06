@@ -6,7 +6,7 @@ import { Button } from './Button'
 
 const Login = () => {
 	const [pin, setPin] = useState('')
-	const [setLogin] = useState(false)
+	const [login, setLogin] = useState(false)
 	const [finger, setFinger] = useState('')
 
 	const pinRef = useRef(null)
