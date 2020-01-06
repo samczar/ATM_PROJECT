@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { confirmAlert } from 'react-confirm-alert' // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 
 import Login from './Login'
 import config from '../config'
@@ -25,6 +27,25 @@ const Dashboard = () => {
 		setMessage('Card Has Being Deactivated')
 	}
 
+	const confirm = () => {
+		confirmAlert({
+			title: 'Deactivate Card?',
+			message: 'Are you sure to do this.',
+			buttons: [
+				{
+					label: 'Yes',
+					onClick: () => {
+						alert('Click Yes')
+						setMessage('Card Has Being Deactivated')
+					}
+				},
+				{
+					label: 'No',
+					onClick: () => alert('Click No')
+				}
+			]
+		})
+	}
 	const dashboardLoad = () => {
 		if (login === false) {
 			return <Login />
@@ -46,7 +67,9 @@ const Dashboard = () => {
 						<Button>
 							<Link to="/enquire">Balance</Link>
 						</Button>
-						<Button onClick={handleCardDeactivation}>DeActivate Card</Button>
+						<div className="container">
+							<button onClick={confirm}>Confirm dialog</button>
+						</div>
 						<br />
 						<div>{message}</div>
 						<br />
