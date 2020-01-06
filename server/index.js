@@ -59,8 +59,28 @@ function searchFingerPrint(req, res) {
 		'./routes/example_search.py'	
 	])
 	process.stdout.on('data', function(data) {
-		console.log(data.toString())
-		res.send(data.toString())
+		var createFingerPrintMessage = data.toString()
+	console.log(createFingerPrintMessage)
+
+	//var regex = /#[0-9]+$/g
+	var regex = /#\d+/g
+	var foundArray = createFingerPrintMessage.match(regex)
+	console.log('foundArray ',foundArray)
+	var valueText = JSON.stringify(foundArray)
+	console.log('valueText ', valueText)
+	var regexNumber = /[0-9]/g
+	var getNumber = valueText.match(regexNumber)
+	
+	if(getNumber == null ){
+	console.log('Null value')
+	}else{
+	var mainValue = getNumber.join('')
+	console.log('number ', mainValue)
+	}
+	
+
+	res.send({info: mainValue, error: '', duplicate: ''})
+	
 	})
 }
 

@@ -174,19 +174,19 @@ router.post('/logout', (req, res, next) => {
 	})
 })
 router.post('/login', (req, res) => {
-	const cardNum = req.body.card_number
+	const finger = req.body.finger
 	const pin = req.body.pin
 
-	Card.findOne({ card_number: cardNum, pin: pin }, (err, card) => {
+	Card.findOne({ finger: finger, pin: pin }, (err, card) => {
 		console.log(pin)
 		if (err) {
 			res.send(err)
 		} else {
-			if (parseInt(pin) !== parseInt(card.pin) || card.pin === '') {
+			if (parseInt(pin) !== parseInt(card.pin) || card.pin === '' || parseInt(finger) !== parseInt(card.finger) || card.finger === '') {
 				res.send({ err: '-2', info: 'wrong' })
 			} else {
 				Card.findOneAndUpdate(
-					{ card_number: cardNum },
+					{ finger: finger },
 					{ $set: { login: true } },
 					(err, doc) => {
 						if (err) {

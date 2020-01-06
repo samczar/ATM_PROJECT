@@ -9,18 +9,22 @@ const Login = () => {
 	const [pin, setPin] = useState('')
 	const [login, setLogin] = useState(false)
 	const [finger, setFinger] = useState('')
+	const [imageName, setImageName] = useState('')
 
 	const accountNumberRef = useRef(null)
 	const pinRef = useRef(null)
 	const history = useHistory()
 
 	const handleScanFinger = () => {
-		fetch(`${config.api}/api/searchFingerMakerApi`)
+		fetch(`${config.api}/searchFingerMakerApi`)
 		.then(resp=> resp.json())
 		.then(data =>{
 			setFinger(data.info)
 		})
 	}
+	const handleCaptureImage = () =>{
+		
+    }
 	const handleLogin = () => {
 		if (finger.length === 0 || pin.length === 0) {
 			return
@@ -64,6 +68,9 @@ const Login = () => {
 			/> */}
 			<Button  buttonStyle="btn--success--solid" type="button"
 			 onClick={handleScanFinger}>Scan finger</Button>
+			<br />
+			<Button buttonStyle="btn--warning--solid" type="button"
+			 onClick={handleCaptureImage}>Capture image</Button>
 			<br />
 			<input
 				type="password"
