@@ -42,11 +42,13 @@ const Login = () => {
 				const account_name = data.data.name
 				const account_number = data.data.card_number
 				const account_id = data.data._id
+const finger  = data.data.finger
 
 				sessionStorage.setItem('name', account_name)
 				sessionStorage.setItem('account_number', account_number)
 				sessionStorage.setItem('account_id', account_id)
 				sessionStorage.setItem('login_state', true)
+				sessionStorage.setItem('finger_encrypted', finger) 
 
 				setLogin(true)
 
