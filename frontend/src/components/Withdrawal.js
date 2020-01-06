@@ -15,7 +15,7 @@ const Withdrawal = () => {
 
 	useEffect(() => {
 		setId(sessionStorage.getItem('account_id') || id)
-		setEFinger(sessionStorage.getItem('finger_encrypt') || e_finger)
+		setEFinger(sessionStorage.getItem('finger_encrypted') || e_finger)
 		setLogin(sessionStorage.getItem('login_state') || login)
 	})
 
