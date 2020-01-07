@@ -18,10 +18,30 @@ const CardMaker = () => {
 		var response = await fetch(`${config.api}/createFingerMakerApi`)
 		const data = await response.json()
 		setFingerPrint(data.info)
-		console.log(data)
+		setMessage('Finger print gotten' ,data.info)
+		if (data.info === 'undefined' || data.info === null || data.info === ''){
+		setMessage('Finger print not correct yet')
+}
 	}
 
 	const createCard = () => {
+
+     if(cardName === '' || cardName.length < 2){
+		setMessage('Card name can not be empty or less than 2')
+	return
+	}
+ 	if(cardNumber === '' || cardNumber < 2){
+		setMessage('Card Number can not be empty or less than 2')
+		return
+}
+	if(cardPin === '' || cardPin.length < 4){
+		setMessage('Pin can not be empty or less than 4')
+		return
+	}
+	if(fingerPrint === '' || fingerPrint === 'undefined'){
+		setMessage('Finger Print can not be empty ')
+		return
+	}
 		fetch(`${config.api}/api/v1/card`, {
 			method: 'POST',
 			headers: {
@@ -57,7 +77,7 @@ const CardMaker = () => {
 					ref={refName}
 					className="textInput"
 				/>
-				<br />
+				
 				<br />
 				<input
 					type="text"
@@ -69,7 +89,7 @@ const CardMaker = () => {
 					className="textInput"
 				/>
 				<br />
-				<br />
+			
 				<input
 					type="number"
 					placeholder="Pin"
@@ -81,13 +101,12 @@ const CardMaker = () => {
 					className="textInput"
 				/>
 				<br />
-				<br />
+			
 				<Button onClick={createFingerMaker}>Scan Finger</Button>
 				<br />
-				<br />
+				
 				<Button onClick={createCard}>Create User</Button>
 
-				<br />
 				<br />
 				{message}
 			</div>

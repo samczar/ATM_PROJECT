@@ -23,12 +23,12 @@ const Login = () => {
 	}
 
 	const handleLogin = () => {
-		if (finger.length === 0) {
+		if (finger.length === 0 || finger === 'undefined') {
 			setMessage('finger print cannot be empty')
 			return
 		}
 		if (pin.length < 4 || pin === '') {
-			setMessage('pin print cannot be empty')
+			setMessage('pin cannot be empty')
 			return
 		}
 		fetch(`${config.api}/api/v1/login`, {

@@ -32,9 +32,17 @@ function createFingerPrint(req, res) {
 		console.log(createFingerPrintMessage)
 
 		//var regex = /#[0-9]+$/g
+		var duplicate = 'Template already exists'
+		var error = 'Operation failed!'
+		var checkStringRegex = /(?:^|\W)duplicate(?:$|\W)/
+		var errorStringRegex = /(?:^|\W)error(?:$|\W)/
 		var regex = /#\d+/g
 		var foundArray = createFingerPrintMessage.match(regex)
-		console.log('foundArray ', foundArray)
+		var errorMessageArray = 	createFingerPrintMessage.match(errorStringRegex)
+		var duplicateMessageArray = 	createFingerPrintMessage.match(checkStringRegex)
+		console.log('duplicateArray ', foundArray)
+		console.log('errorArray ', errorMessageArray )
+		console.log('foundArray ', duplicateMessageArray)
 		var valueText = JSON.stringify(foundArray)
 		console.log('valueText ', valueText)
 		var regexNumber = /[0-9]/g
@@ -69,7 +77,7 @@ function searchFingerPrint(req, res) {
 
 		if (getNumber == null) {
 			console.log('Null value')
-			res.send('Finger Print is Null')
+			
 		} else {
 			var mainValue = getNumber.join('')
 			console.log('number ', mainValue)
